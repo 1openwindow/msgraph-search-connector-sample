@@ -34,7 +34,7 @@ namespace PartsInventoryConnector.Data
     {
         public AppliancePartMap()
         {
-            Map(m => m.PartNumber);
+            //Map(m => m.PartNumber);
             Map(m => m.Name);
             Map(m => m.Description);
             Map(m => m.Price);

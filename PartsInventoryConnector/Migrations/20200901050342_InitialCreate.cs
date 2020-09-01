@@ -12,34 +12,23 @@ namespace PartsInventoryConnector.Migrations
                 columns: table => new
                 {
                     PartNumber = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     Price = table.Column<double>(nullable: false),
                     Inventory = table.Column<int>(nullable: false),
                     Appliances = table.Column<string>(nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false, defaultValue: false),
-                    LastUpdated = table.Column<DateTime>(nullable: false, defaultValueSql: "datetime()")
+                    LastUpdated = table.Column<DateTime>(nullable: false, defaultValueSql: "getdate()")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Parts", x => x.PartNumber);
                 });
-
-            // Set trigger to update the LastUpdated property
-            migrationBuilder.Sql(@"CREATE TRIGGER set_last_updated AFTER UPDATE
-            ON Parts
-            BEGIN
-                UPDATE Parts
-                SET LastUpdated = datetime('now')
-                WHERE PartNumber = NEW.PartNumber;
-            END;");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.Sql("DROP TRIGGER set_last_updated");
-
             migrationBuilder.DropTable(
                 name: "Parts");
         }

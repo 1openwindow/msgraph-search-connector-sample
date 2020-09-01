@@ -109,6 +109,7 @@ namespace PartsInventoryConnector
                 Output.WriteLine(Output.Error, "An unexpected exception occurred.");
                 Output.WriteLine(Output.Error, ex.Message);
                 Output.WriteLine(Output.Error, ex.StackTrace);
+                Output.WriteLine(Output.Error, ex.InnerException.ToString());
             }
         }
 
@@ -285,8 +286,13 @@ namespace PartsInventoryConnector
         private static void ImportCsvToDatabase(ApplianceDbContext db, string partsFilePath)
         {
             var parts = CsvDataLoader.LoadPartsFromCsv(partsFilePath);
-            db.AddRange(parts);
-            db.SaveChanges();
+            foreach(var part in parts)
+            {
+                db.Add(part);
+                db.SaveChanges();
+            }
+            //db.AddRange(parts);
+            //db.SaveChanges();
         }
 
         private static async Task UpdateItemsFromDatabase(bool uploadModifiedOnly)
