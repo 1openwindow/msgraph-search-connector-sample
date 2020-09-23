@@ -14,7 +14,7 @@ namespace PartsInventoryConnector.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer(@"Server=tcp:teamstest.database.windows.net,1433;Initial Catalog=connector-demo;Persist Security Info=False;User ID=zihch;Password=Abc123456;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+            options.UseSqlServer(@"Server=tcp:zihchdbserver.database.windows.net,1433;Initial Catalog=Parts;Persist Security Info=False;User ID=zihch;Password=Abc@123456;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -54,7 +54,6 @@ namespace PartsInventoryConnector.Models
                 {
                     SoftDelete(entry);
                 }
-
             }
 
             return base.SaveChanges();

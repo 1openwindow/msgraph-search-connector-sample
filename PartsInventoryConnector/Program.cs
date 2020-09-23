@@ -434,8 +434,8 @@ namespace PartsInventoryConnector
             Output.WriteLine($"{Convert.ToInt32(MenuChoice.DeleteConnection)}. Delete current connection");
             Output.WriteLine($"{Convert.ToInt32(MenuChoice.RegisterSchema)}. Register schema for current connection");
             Output.WriteLine($"{Convert.ToInt32(MenuChoice.ViewSchema)}. View schema for current connection");
-            Output.WriteLine($"{Convert.ToInt32(MenuChoice.PushUpdatedItems)}. Push updated items to current connection");
-            Output.WriteLine($"{Convert.ToInt32(MenuChoice.PushAllItems)}. Push ALL items to current connection");
+            Output.WriteLine($"{Convert.ToInt32(MenuChoice.PushUpdatedItems)}. Push updated items from SQL to MS Graph");
+            Output.WriteLine($"{Convert.ToInt32(MenuChoice.PushAllItems)}. Push ALL items from SQL to MS Graph");
             Output.WriteLine($"{Convert.ToInt32(MenuChoice.Exit)}. Exit");
 
             try
